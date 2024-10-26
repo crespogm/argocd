@@ -84,10 +84,7 @@ server:
       warn: false
   ingress:
     enabled: true
-    annotations: {}
-    labels: {}
-    ingressClassName: ""
     hosts:
-       - argocd.gonz.local
+       [ - argocd.gonz.local ]
     paths:
       - /
