@@ -115,5 +115,4 @@ server:
       - hosts:
           - myargocddomain.local
         secretName: argocd-server-tls
-    # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
-    https: true
+     https: true
