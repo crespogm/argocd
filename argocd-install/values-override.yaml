@@ -82,3 +82,13 @@ server:
       kind: '*'
     orphanedResources:
       warn: false
+  ingress:
+    enabled: true
+    annotations: {}
+    labels: {}
+    ingressClassName: ""
+    hosts:
+      []
+       - argocd.gonz.local
+    paths:
+      - /
