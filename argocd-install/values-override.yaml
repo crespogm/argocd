@@ -82,3 +82,38 @@ server:
       kind: '*'
     orphanedResources:
       warn: false
+  certificate:
+    # -- Deploy a Certificate resource (requires cert-manager)
+    enabled: true
+    # -- The name of the Secret that will be automatically created and managed by this Certificate resource
+    secretName: argocd-server-tls
+    # -- Certificate primary domain (commonName)
+    domain: myargocddomain.local
+    # -- Certificate Subject Alternate Names (SANs)
+    additionalHosts: []
+    # Certificate issuer
+    ## Ref: https://cert-manager.io/docs/concepts/issuer
+    issuer:
+      # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
+      group: "cert-manager.io"
+      # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
+      kind: "ClusterIssuer"
+      # -- Certificate issuer name. Eg. `letsencrypt`
+      name: "My-cluster-issuer"
+
+  ingress:
+      enabled: true
+      annotations:
+        ingress.kubernetes.io/ssl-redirect: true
+        ingress.kubernetes.io/proxy-body-size: 0
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: My-cluster-issuer
+      ingressClassName: traefik
+      hosts:
+        - myargocddomain.local
+      tls:
+      - hosts:
+          - myargocddomain.local
+        secretName: argocd-server-tls
+    # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
+    https: true
