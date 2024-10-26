@@ -102,17 +102,17 @@ server:
       name: "My-cluster-issuer"
 
   ingress:
-      enabled: true
-      annotations:
-        ingress.kubernetes.io/ssl-redirect: true
-        ingress.kubernetes.io/proxy-body-size: 0
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        cert-manager.io/cluster-issuer: My-cluster-issuer
-      ingressClassName: traefik
+    enabled: true
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: true
+      ingress.kubernetes.io/proxy-body-size: 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: My-cluster-issuer
+    ingressClassName: traefik
+    hosts:
+      - myargocddomain.local
+    tls:
+    - secretName: argocd-server-tls 
       hosts:
-        - myargocddomain.local
-      tls:
-      - hosts:
-        - myargocddomain.local
-        secretName: argocd-server-tls
-     https: true
+        - myargocddomain.local      
+    https: true
