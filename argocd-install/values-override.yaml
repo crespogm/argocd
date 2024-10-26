@@ -113,6 +113,6 @@ server:
         - myargocddomain.local
       tls:
       - hosts:
-          - myargocddomain.local
+        - myargocddomain.local
         secretName: argocd-server-tls
      https: true
