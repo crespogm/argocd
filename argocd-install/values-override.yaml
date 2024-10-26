@@ -83,23 +83,11 @@ server:
     orphanedResources:
       warn: false
   certificate:
-    # -- Deploy a Certificate resource (requires cert-manager)
     enabled: true
-    # -- The name of the Secret that will be automatically created and managed by this Certificate resource
-    secretName: argocd-server-tls
-    # -- Certificate primary domain (commonName)
     domain: myargocddomain.local
-    # -- Certificate Subject Alternate Names (SANs)
+    issuer: {}
     additionalHosts: []
-    # Certificate issuer
-    ## Ref: https://cert-manager.io/docs/concepts/issuer
-    issuer:
-      # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
-      group: "cert-manager.io"
-      # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
-      kind: "ClusterIssuer"
-      # -- Certificate issuer name. Eg. `letsencrypt`
-      name: "My-cluster-issuer"
+
 
   ingress:
     enabled: true
