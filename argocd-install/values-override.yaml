@@ -82,9 +82,3 @@ server:
       kind: '*'
     orphanedResources:
       warn: false
-  ingress:
-    enabled: true
-    hosts:
-       [ - argocd.gonz.local ]
-    paths:
-      - /
