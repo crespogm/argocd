@@ -82,25 +82,3 @@ server:
       kind: '*'
     orphanedResources:
       warn: false
-  certificate:
-    enabled: true
-    domain: myargocddomain.local
-    issuer: {}
-    additionalHosts: []
-
-
-  ingress:
-    enabled: true
-    annotations:
-      ingress.kubernetes.io/ssl-redirect: true
-      ingress.kubernetes.io/proxy-body-size: 0
-      traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      cert-manager.io/cluster-issuer: My-cluster-issuer
-    ingressClassName: traefik
-    hosts:
-      - myargocddomain.local
-    tls:
-    - secretName: argocd-server-tls 
-      hosts:
-        - myargocddomain.local      
-    https: true
